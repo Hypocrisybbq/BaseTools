@@ -7,11 +7,15 @@ import android.provider.Settings
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import java.io.File
+import java.nio.charset.Charset
 
+// TODO: 2020/8/31 需要专门写一个编码判断类，来判断编码类型
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val byte:Byte=48
+//        Log.e("CHEN", byte.toString())
         if (checkESMPermission()) {
             //执行全部文件的查询操作
         } else {
@@ -25,13 +29,17 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        Log.e("CHEN", "onResume:" + checkESMPermission())
+
+//        Log.e("CHEN", "onResume:" + checkESMPermission())
         if (checkESMPermission()) {
-            val file = File("/sdcard/Download/我的ansi.txt")
-            val readBytes = file.readBytes()
-            for (item: Byte in readBytes) {
-                Log.e("CHEN", item.toString())
-            }
+//            val file = File("/sdcard/Download/我的ansi.txt")
+            val file = File("/sdcard/Download/我的魔王城有皮肤.txt")
+            val readText = file.readText(Charset.forName("GB18030"))
+            Log.e("CHEN", readText)
+//            val readBytes = file.readBytes()
+//            for (item: Byte in readBytes) {
+//                Log.e("CHEN", item.toString())
+//            }
 
         }
     }
