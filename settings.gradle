@@ -1,0 +1,3 @@
+include ':ToolAndroidLibrary'
+include ':app'
+rootProject.name = "BaseTools"
